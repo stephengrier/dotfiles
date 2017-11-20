@@ -1,0 +1,28 @@
+[user]
+    name = Stephen Grier
+    email = stephen.grier@digital.cabinet-office.gov.uk
+    signingkey = 0xF36B074FC1619D5E
+[commit]
+    gpgSign = true
+[http]
+    sslVerify = true
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    graph = log --oneline --graph --decorate
+    shorthash = log --abbrev-commit
