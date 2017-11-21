@@ -52,6 +52,26 @@ do
   fi
 done
 
+echo "--> Linking files in ~/.gnupg..."
+if [ ! -d ~/.gnupg ]; then
+  mkdir ~/.gnupg
+fi
+for file in ~/.dotfiles/gnupg/*.conf; do
+  target=~/.gnupg/$(basename $file)
+  if [ ! -f "$target" ]; then
+    ln -s "$file" "$target"
+  fi
+done
+
+echo "--> Import GPG public keys..."
+for file in ~/.dotfiles/gnupg/*.pem; do
+  keyid=$(basename -s .pem "$file")
+  if gpg -k "$keyid" 2>&1 | grep -q 'No public key'; then
+    gpg --import --armor < "$file"
+  fi
+done
+
+
 echo "--> Install vim pathogen..."
 pathogenurl="https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 if [ ! -d ~/.vim/autoload ]; then
