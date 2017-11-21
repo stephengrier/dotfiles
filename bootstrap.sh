@@ -52,5 +52,17 @@ do
   fi
 done
 
+echo "--> Install vim pathogen..."
+pathogenurl="https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
+if [ ! -d ~/.vim/autoload ]; then
+  mkdir -p ~/.vim/{autoload,bundle}
+  curl -s $pathogenurl > ~/.vim/autoload/pathogen.vim
+fi
+
+echo "--> Install vim NERDTree..."
+if [ ! -d ~/.vim/bundle/nerdtree ]; then
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
