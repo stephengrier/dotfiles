@@ -84,5 +84,36 @@ if [ ! -d ~/.vim/bundle/nerdtree ]; then
   git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 fi
 
+echo "--> Customising iTerm settings..."
+
+echo "--> Disabling the bell..."
+if ! /usr/libexec/PlistBuddy \
+  -c "print 'New Bookmarks':0:'Silence Bell'" \
+  ~/Library/Preferences/com.googlecode.iterm2.plist | grep -q 'true'; then
+  /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Silence Bell' true" ~/Library/Preferences/com.googlecode.iTerm2.plist
+  /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Visual Bell' false" ~/Library/Preferences/com.googlecode.iTerm2.plist
+fi
+
+echo "--> Map alt+left and alt+right key combinations to word skip left and right..."
+if ! /usr/libexec/PlistBuddy \
+  -c "print :'New Bookmarks':0:'Keyboard Map':'0xf702-0x280000':Text" \
+  ~/Library/Preferences/com.googlecode.iterm2.plist 2>&1 | egrep -q '^b$'; then
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0xf702-0x280000':Text 'b'" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0xf702-0x280000':Action 10" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0xf703-0x280000':Text 'f'" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0xf703-0x280000':Action 10" ~/Library/Preferences/com.googlecode.iterm2.plist
+fi
+
+echo "--> Map cmd+backspace key combination to word delete..."
+if ! /usr/libexec/PlistBuddy \
+  -c "print :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Text" \
+  ~/Library/Preferences/com.googlecode.iterm2.plist 2>&1 | egrep -q '^0x1B 0x08$'; then
+  /usr/libexec/PlistBuddy -c "Add :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000' dict" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Add :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Text string" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Text '0x1B 0x08'" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Add :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Action integer" ~/Library/Preferences/com.googlecode.iterm2.plist
+  /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Action 11" ~/Library/Preferences/com.googlecode.iterm2.plist
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
