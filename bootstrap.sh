@@ -115,5 +115,11 @@ if ! /usr/libexec/PlistBuddy \
   /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Keyboard Map':'0x7f-0x100000':Action 11" ~/Library/Preferences/com.googlecode.iterm2.plist
 fi
 
+echo "--> Setting a fast keyboard repeat rate..."
+if ! defaults read NSGlobalDomain KeyRepeat 2>&1 | egrep -q '^0$'; then
+  defaults write NSGlobalDomain KeyRepeat -int 0
+  defaults write NSGlobalDomain InitialKeyRepeat -int 15
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
