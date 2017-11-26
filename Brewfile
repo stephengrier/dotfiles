@@ -1,6 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
+tap 'caskroom/drivers'
 
 brew 'ansible'
 brew 'aspell'
@@ -39,3 +40,4 @@ cask 'macpass'
 cask 'vagrant'
 cask 'virtualbox'
 #cask 'yubico-authenticator'
+cask 'hp-easy-start'
