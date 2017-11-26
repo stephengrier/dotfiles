@@ -121,5 +121,10 @@ if ! defaults read NSGlobalDomain KeyRepeat 2>&1 | egrep -q '^0$'; then
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
 fi
 
+echo "--> Setting autohide on the dock app..."
+if defaults read com.apple.dock autohide | egrep -q '^0$'; then
+  defaults write com.apple.dock autohide -bool true
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
