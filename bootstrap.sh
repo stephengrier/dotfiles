@@ -126,5 +126,11 @@ if defaults read com.apple.dock autohide | egrep -q '^0$'; then
   defaults write com.apple.dock autohide -bool true
 fi
 
+echo "--> Setting the date format on the clock..."
+dateformat='EEE d MMM  HH:mm:ss'
+if ! defaults read com.apple.menuextra.clock DateFormat | egrep -q "^${dateformat}$"; then
+  defaults write com.apple.menuextra.clock DateFormat -string "${dateformat}"
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
