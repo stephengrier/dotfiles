@@ -52,6 +52,17 @@ do
   fi
 done
 
+echo "--> Creating per-workspace git configs..."
+if [ ! -d ~/git ];
+then
+  mkdir ~/git
+fi
+gitworkconfig=~/git/.gitconfig;
+if [ ! -f "${gitworkconfig}" ];
+then
+  printf '[user]\n    email = stephen.grier@digital.cabinet-office.gov.uk\n' > "${gitworkconfig}";
+fi
+
 echo "--> Linking files in ~/.gnupg..."
 if [ ! -d ~/.gnupg ]; then
   mkdir ~/.gnupg

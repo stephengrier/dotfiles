@@ -1,7 +1,9 @@
 [user]
     name = Stephen Grier
-    email = stephen.grier@digital.cabinet-office.gov.uk
+    email = git@grier.org.uk
     signingkey = 0xF36B074FC1619D5E
+[includeIf "gitdir:~/git/"]
+    path = ~/git/.gitconfig
 [commit]
     gpgSign = true
 [http]
