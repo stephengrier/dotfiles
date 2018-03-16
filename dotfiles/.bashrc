@@ -9,10 +9,9 @@ if [ -d $HOME/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
-# Enable verify-shell-completions.
-if [ -d ~/git/verify-shell-completions ]; then
-  . ~/git/verify-shell-completions/ssh-complete.sh
-  fi
+# Enable SSH shell completions.
+export ANSIBLE_DIR=$HOME/git/verify-ansible
+source "${ANSIBLE_DIR}/shell_completions"
 
 # https://gist.github.com/trey/2722934
 source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
