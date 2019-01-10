@@ -143,5 +143,10 @@ if ! defaults read com.apple.menuextra.clock DateFormat | egrep -q "^${dateforma
   defaults write com.apple.menuextra.clock DateFormat -string "${dateformat}"
 fi
 
+echo "--> Setting screensaver to immediately require a password..."
+if ! defaults read com.apple.screensaver askForPasswordDelay | ! egrep -q '^0$'; then
+  defaults write com.apple.screensaver askForPasswordDelay 0
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
