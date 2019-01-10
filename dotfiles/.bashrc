@@ -20,7 +20,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 
 # Set a shell prompt.
 hostname=$(hostname -s)
-PS1='[\u@${hostname} \w$(__git_ps1)]\$ '
+PS1='[👾 👾 👾 @${hostname} \w$(__git_ps1)]\$ '
 
 # Configure gpg-agent.
 GPG_TTY=$(tty)
@@ -29,3 +29,5 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 # Make sure pinentry knows what terminal to display on.
 gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
+
+PATH=$PATH:~/git/gds-cli/bin
