@@ -14,13 +14,13 @@ export ANSIBLE_DIR=$HOME/git/verify-ansible
 source "${ANSIBLE_DIR}/shell_completions"
 
 # https://gist.github.com/trey/2722934
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 
 # Set a shell prompt.
 hostname=$(hostname -s)
-PS1='[👾 👾 👾 @${hostname} \w$(__git_ps1)]\$ '
+PS1='[\u@${hostname} \w$(__git_ps1)]\$ '
 
 # Configure gpg-agent.
 GPG_TTY=$(tty)
