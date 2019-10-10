@@ -28,3 +28,5 @@
 [alias]
     graph = log --oneline --graph --decorate
     shorthash = log --abbrev-commit
+[diff]
+	noprefix = true
