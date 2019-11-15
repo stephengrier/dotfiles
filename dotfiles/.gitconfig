@@ -2,8 +2,8 @@
     name = Stephen Grier
     email = git@grier.org.uk
     signingkey = 0xF36B074FC1619D5E
-[includeIf "gitdir:~/git/"]
-    path = ~/git/.gitconfig
+[includeIf "gitdir:~/git/gds/"]
+    path = ~/git/gds/.gitconfig
 [commit]
     gpgSign = true
 [http]
