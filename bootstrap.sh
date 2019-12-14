@@ -144,7 +144,7 @@ if ! defaults read com.apple.menuextra.clock DateFormat | egrep -q "^${dateforma
 fi
 
 echo "--> Setting screensaver to immediately require a password..."
-if ! defaults read com.apple.screensaver askForPasswordDelay | ! egrep -q '^0$'; then
+if ! defaults read com.apple.screensaver askForPasswordDelay | egrep -q '^0$'; then
   defaults write com.apple.screensaver askForPasswordDelay 0
 fi
 
