@@ -1,7 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
-tap 'caskroom/drivers'
+tap 'homebrew/cask-drivers'
 tap 'cloudfoundry/tap'
 tap 'osx-cross/avr'
 tap 'PX4/homebrew-px4'
