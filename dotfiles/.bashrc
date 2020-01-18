@@ -10,7 +10,7 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 # Enable SSH shell completions.
-export ANSIBLE_DIR=$HOME/git/verify-ansible
+export ANSIBLE_DIR=$HOME/git/gds/verify-ansible
 source "${ANSIBLE_DIR}/shell_completions"
 
 # https://gist.github.com/trey/2722934
