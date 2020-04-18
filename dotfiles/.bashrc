@@ -34,3 +34,5 @@ gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
 
 PATH=$PATH:~/git/gds-cli/bin
+
+export GOPATH=$HOME/go:$HOME/git/personal/golang
