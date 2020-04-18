@@ -17,10 +17,13 @@ source "${ANSIBLE_DIR}/shell_completions"
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWCOLORHINTS=true
 
 # Set a shell prompt.
-hostname=$(hostname -s)
-PS1='[\u@${hostname} \w$(__git_ps1)]\$ '
+pcolour_cyan='\[\033[36m\]'
+pcolour_yellow='\[\033[33m\]'
+pcolour_reset='\[\033[00m\]'
+PROMPT_COMMAND="__git_ps1 '${pcolour_cyan}\u@\h${pcolour_reset}: ${pcolour_yellow}\w${pcolour_reset}' '\n→ '"
 
 # Configure gpg-agent.
 GPG_TTY=$(tty)
