@@ -148,5 +148,11 @@ if ! defaults read com.apple.screensaver askForPasswordDelay | egrep -q '^0$'; t
   defaults write com.apple.screensaver askForPasswordDelay 0
 fi
 
+echo "--> Mapping caps lock key to escape..."
+# https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+if ! hidutil property --get "UserKeyMapping" | egrep -q '30064771129'; then
+  hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}'
+fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
