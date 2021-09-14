@@ -48,6 +48,7 @@ brew 'wget'
 brew 'xz'
 brew 'ykman'
 brew 'ykpers'
+brew 'zbar'
 
 #cask 'google-chrome'
 cask 'iterm2'
