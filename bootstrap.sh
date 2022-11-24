@@ -129,8 +129,8 @@ if ! /usr/libexec/PlistBuddy \
 fi
 
 echo "--> Setting a fast keyboard repeat rate..."
-if ! defaults read NSGlobalDomain KeyRepeat 2>&1 | egrep -q '^0$'; then
-  defaults write NSGlobalDomain KeyRepeat -int 0
+if ! defaults read NSGlobalDomain KeyRepeat 2>&1 | egrep -q '^2$'; then
+  defaults write NSGlobalDomain KeyRepeat -int 2
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
 fi
 
