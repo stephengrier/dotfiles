@@ -1,5 +1,5 @@
 syntax on
-colo delek
+colo desert
 
 set laststatus=2
 
@@ -23,8 +23,8 @@ set number
 nmap <C-N><C-N> :set invnumber
 
 " Highlight anything beyond 80 chars.
-highlight ColorColumn ctermbg=235
-let &colorcolumn=join(range(81,999),",")
+"highlight ColorColumn ctermbg=235
+"let &colorcolumn=join(range(81,999),",")
 
 " Wrap after 80 chars.
 set textwidth=80
@@ -35,7 +35,7 @@ set splitbelow
 set splitright
 
 " Turn on cursor line highlighting.
-hi CursorLine cterm=NONE ctermbg=235 ctermfg=white guibg=darkred guifg=white
+"hi CursorLine cterm=NONE ctermbg=235 ctermfg=white guibg=darkred guifg=white
 set cursorline
 
 " The next 6 lines highlight trailing whitespace
