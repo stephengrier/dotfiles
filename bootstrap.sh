@@ -156,5 +156,11 @@ if ! hidutil property --get "UserKeyMapping" | egrep -q '30064771129'; then
   hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}'
 fi
 
+echo "--> Changing the default shell to Bash..."
+# https://support.apple.com/en-gb/HT208050
+if ! dscl . -read ~/ UserShell | egrep -q '/bin/bash$'; then
+  chsh -s /bin/bash
+ fi
+
 echo "--> Installing AppStore updates..."
 sudo softwareupdate -ia
