@@ -51,6 +51,7 @@ brew 'ykman'
 brew 'ykpers'
 brew 'zbar'
 
+cask 'git-credential-manager'
 cask 'iterm2'
 cask 'macpass'
 cask 'unetbootin'

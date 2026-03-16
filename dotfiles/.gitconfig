@@ -30,3 +30,5 @@
     shorthash = log --abbrev-commit
 [diff]
 	noprefix = true
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
