@@ -33,3 +33,5 @@ PATH=$PATH:~/git/gds-cli/bin
 export GOPATH=$HOME/go:$HOME/git/personal/golang
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+eval "$(gds shell-completion bash)"
