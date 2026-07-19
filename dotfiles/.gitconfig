@@ -1,7 +1,7 @@
 [user]
     name = Stephen Grier
     email = git@grier.org.uk
-    signingkey = 0xF36B074FC1619D5E
+    signingkey = 0xB2FDEE18239DBE88
 [includeIf "gitdir:~/git/alphagov/"]
     path = ~/git/alphagov/.gitconfig
 [includeIf "gitdir:~/git/gds-tech-and-security/"]
