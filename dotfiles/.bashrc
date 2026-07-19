@@ -36,9 +36,65 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 eval "$(gds shell-completion bash)"
 
-aws-login-dev() {
+aws-exec() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: aws-exec <profile> <command> [args...]"
+    return 1
+  fi
+
+  local profile="$1"
+  shift
+
   (
-    eval $(aws configure export-credentials --profile stephengrier-dev-admin --format env)
-    $@
+    eval "$(aws configure export-credentials --profile "$profile" --format env)" || exit 1
+    "$@"
   )
+}
+
+aws-console() {
+    : "${AWS_ACCESS_KEY_ID:?AWS_ACCESS_KEY_ID not set}"
+    : "${AWS_SECRET_ACCESS_KEY:?AWS_SECRET_ACCESS_KEY not set}"
+    : "${AWS_SESSION_TOKEN:?AWS_SESSION_TOKEN not set}"
+
+    local destination="${1:-https://console.aws.amazon.com/}"
+
+    local session signin_token login_url
+
+    session=$(
+        jq -cn \
+            --arg id "$AWS_ACCESS_KEY_ID" \
+            --arg key "$AWS_SECRET_ACCESS_KEY" \
+            --arg token "$AWS_SESSION_TOKEN" \
+            '{
+                sessionId: $id,
+                sessionKey: $key,
+                sessionToken: $token
+            }'
+    ) || return 1
+
+    signin_token=$(
+        curl -fsG \
+            --data-urlencode "Action=getSigninToken" \
+            --data-urlencode "Session=$session" \
+            https://signin.aws.amazon.com/federation |
+        jq -er '.SigninToken'
+    ) || return 1
+
+    login_url="https://signin.aws.amazon.com/federation?Action=login&Issuer=shell&Destination=$(printf '%s' "$destination" | jq -sRr @uri)&SigninToken=$signin_token"
+
+    if command -v open >/dev/null 2>&1; then
+        open "$login_url"          # macOS
+    elif command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "$login_url"      # Linux
+    else
+        printf '%s\n' "$login_url"
+    fi
+}
+
+aws-console-dev() {
+    aws-exec stephengrier-dev-admin aws-console
+}
+
+aws-console-prod() {
+    aws-exec stephengrier-prod-admin aws-console
 }
